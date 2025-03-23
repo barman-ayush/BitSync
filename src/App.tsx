@@ -1,11 +1,6 @@
-// import {
-//   SignedIn,
-//   SignedOut,
-//   SignInButton,
-//   UserButton,
-// } from "@clerk/clerk-react";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.component";
+import LandingPage from "./components/landingPage/LandingPage.component";
 
 export default function App() {
   return (
@@ -17,7 +12,7 @@ export default function App() {
         <Navbar />
         <main>
           <Routes>
-            <Route path="/" />
+            <Route path="/" element={<LandingPage/>} />
           </Routes>
         </main>
       </header>
