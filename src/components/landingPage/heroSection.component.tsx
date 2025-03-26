@@ -23,7 +23,7 @@ const HeroSection = () => {
                     <div className="flex space-x-4">
                         <Button 
                             gradientDuoTone="purpleToBlue" 
-                            outline={false}
+                            outline
                             href="/create-repo"
                             className="flex items-center"
                         >
