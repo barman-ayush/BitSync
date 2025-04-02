@@ -7,9 +7,17 @@ import {
   Globe, 
   Bell, 
 } from 'lucide-react';
+import { useState } from 'react';
 import HeroSection from '../landingPage/heroSection.component';
+import FileUploadModal from '../modals/FileUploadModal';
 
 const LandingPage = () => {
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
+  const openUploadModal = () => {
+    setIsUploadModalOpen(true);
+  };
+
   const quickActions = [
     { 
       icon: <Plus className="mr-2" />, 
@@ -20,7 +28,7 @@ const LandingPage = () => {
     { 
       icon: <Upload className="mr-2" />, 
       text: 'Upload Files', 
-      href: '/upload-files',
+      action: () => setIsUploadModalOpen(true),
       className: 'btn-secondary'
     },
     { 
@@ -53,26 +61,37 @@ const LandingPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-800">
       {/* Integrated Hero Section */}
-      <HeroSection />
+      <HeroSection onOpenUploadModal={openUploadModal} />
 
       <div className="container mx-auto px-4 py-8">
         {/* Quick Actions */}
         <section className="mb-10">
-          <h2 className="text-2xl font-semibold mb-4 flex items-center">
+          <h2 className="text-2xl font-semibold mb-4 flex items-center text-gray-800 dark:text-white">
             <Home className="mr-2 text-blue-500" /> Quick Actions
           </h2>
           <div className="flex space-x-4">
             {quickActions.map((action, index) => (
-              <a 
-                key={index} 
-                href={action.href} 
-                className={`flex items-center px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${action.className}`}
-              >
-                {action.icon}
-                {action.text}
-              </a>
+              action.action ? (
+                <button 
+                  key={index} 
+                  onClick={action.action} 
+                  className={`flex items-center px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${action.className}`}
+                >
+                  {action.icon}
+                  {action.text}
+                </button>
+              ) : (
+                <a 
+                  key={index} 
+                  href={action.href} 
+                  className={`flex items-center px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 ${action.className}`}
+                >
+                  {action.icon}
+                  {action.text}
+                </a>
+              )
             ))}
           </div>
         </section>
@@ -82,13 +101,13 @@ const LandingPage = () => {
           {sections.map((section, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+              className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
             >
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
+              <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-800 dark:text-white">
                 {section.icon}
                 {section.title}
               </h3>
-              <div className={`${section.emptyState ? 'text-gray-500 italic' : ''}`}>
+              <div className={`${section.emptyState ? 'text-gray-500 dark:text-gray-300 italic' : ''}`}>
                 {section.content}
               </div>
             </div>
@@ -96,15 +115,21 @@ const LandingPage = () => {
         </div>
 
         {/* Footer */}
-        <footer className="mt-16 text-center text-gray-500 border-t pt-6">
+        <footer className="mt-16 text-center text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
           <p>&copy; 2025 BitSync. All rights reserved.</p>
           <div className="mt-4 space-x-4">
-            <a href="#" className="hover:text-blue-600">Support</a>
-            <a href="#" className="hover:text-blue-600">Terms of Service</a>
-            <a href="#" className="hover:text-blue-600">Privacy Policy</a>
+            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Support</a>
+            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Terms of Service</a>
+            <a href="#" className="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a>
           </div>
         </footer>
       </div>
+      
+      {/* File Upload Modal */}
+      <FileUploadModal 
+        isOpen={isUploadModalOpen} 
+        onClose={() => setIsUploadModalOpen(false)} 
+      />
     </div>
   );
 };

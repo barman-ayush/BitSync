@@ -2,7 +2,12 @@ import { Button } from 'flowbite-react'
 import { HiOutlineCloudUpload, HiPlus } from 'react-icons/hi'
 import { Archive } from 'lucide-react'
 
-const HeroSection = () => {
+// Define the props interface
+interface HeroSectionProps {
+  onOpenUploadModal: () => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onOpenUploadModal }) => {
     return (
         <section className="bg-white dark:bg-gray-900">
             <div className="grid max-w-screen-xl px-4 py-16 mx-auto lg:gap-8 xl:gap-0 lg:py-24 lg:grid-cols-12">
@@ -33,7 +38,7 @@ const HeroSection = () => {
                         <Button 
                             gradientDuoTone="greenToBlue" 
                             outline
-                            href="/upload-files"
+                            onClick={onOpenUploadModal}
                             className="flex items-center"
                         >
                             <HiOutlineCloudUpload className="mr-2 h-5 w-5" />
