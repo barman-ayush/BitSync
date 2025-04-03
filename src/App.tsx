@@ -1,13 +1,17 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.component";
 import LandingPage from "./components/landingPage/LandingPage.component";
-import Repositories from "./components/repositories/Repositories";
+import Repositories from "./components/profile/Repositories";
 import Profile from "./components/profile/Profile";
 import UserRepoDashboard from "./components/userDashboard/userRepoDashboard.component";
 import Support from "./components/support/Support";
 import { Notifications } from "./components/profile/Notifications";
 import AccountSecurity from "./components/profile/AccountSecurity";
 import PersonalInformation from "./components/profile/PersonalInformation";
+import CreateRepository from "./components/repos/CreateRepository";
+import Search from "./components/repos/Search";
+import RecentActivity from "./components/repos/RecentActivity";
+import ExploreRepositories from "./components/repos/ExploreRepositories";
 
 // Add CSS for buttons that our modals and components will use
 const globalStyles = `
@@ -52,6 +56,11 @@ export default function App() {
             <Route path="/profile/notifications" element={<Notifications />} />
             <Route path="/profile/security" element={<AccountSecurity />} />
             <Route path="/profile/edit" element={<PersonalInformation />} />
+            <Route path="/create-repo" element={<CreateRepository />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/activity" element={<RecentActivity />} />
+            <Route path="/explore" element={<ExploreRepositories />} />
+            {/* Add more routes as needed */}
           </Routes>
         </main>
       </header>
