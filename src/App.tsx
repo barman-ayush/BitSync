@@ -1,7 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar.component";
 import LandingPage from "./components/landingPage/LandingPage.component";
+import Repositories from "./components/repositories/Repositories";
+import Profile from "./components/profile/Profile";
 import UserRepoDashboard from "./components/userDashboard/userRepoDashboard.component";
+import Support from "./components/support/Support";
+import { Notifications } from "./components/profile/Notifications";
+import AccountSecurity from "./components/profile/AccountSecurity";
+import PersonalInformation from "./components/profile/PersonalInformation";
 
 // Add CSS for buttons that our modals and components will use
 const globalStyles = `
@@ -39,7 +45,13 @@ export default function App() {
         <main>
           <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/repositories" element={<Repositories />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<UserRepoDashboard />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/profile/notifications" element={<Notifications />} />
+            <Route path="/profile/security" element={<AccountSecurity />} />
+            <Route path="/profile/edit" element={<PersonalInformation />} />
           </Routes>
         </main>
       </header>

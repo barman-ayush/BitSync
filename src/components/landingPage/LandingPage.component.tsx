@@ -10,6 +10,7 @@ import {
 import { useState } from 'react';
 import HeroSection from '../landingPage/heroSection.component';
 import FileUploadModal from '../modals/FileUploadModal';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
@@ -43,18 +44,21 @@ const LandingPage = () => {
     {
       title: 'Recent Activity',
       icon: <Activity className="text-blue-500 mr-2" />,
+      href: '/activity',
       content: 'No recent activities. Start by creating a repository or uploading a file!',
       emptyState: true
     },
     {
       title: 'Explore Repositories',
       icon: <Globe className="text-green-500 mr-2" />,
+      href: '/explore',
       content: 'Discover public repositories once available.',
       emptyState: true
     },
     {
       title: 'Notifications',
       icon: <Bell className="text-orange-500 mr-2" />,
+      href: '/profile/notifications',
       content: 'No notifications at the moment.',
       emptyState: true
     }
@@ -99,9 +103,10 @@ const LandingPage = () => {
         {/* Dynamic Sections */}
         <div className="grid md:grid-cols-3 gap-6">
           {sections.map((section, index) => (
-            <div 
+            <Link 
               key={index} 
-              className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+              to={section.href} 
+              className="bg-white dark:bg-gray-700 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow block"
             >
               <h3 className="text-xl font-semibold mb-4 flex items-center text-gray-800 dark:text-white">
                 {section.icon}
@@ -110,7 +115,7 @@ const LandingPage = () => {
               <div className={`${section.emptyState ? 'text-gray-500 dark:text-gray-300 italic' : ''}`}>
                 {section.content}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
